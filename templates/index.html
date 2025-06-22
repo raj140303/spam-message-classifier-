@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Classifier</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+        }
+
+        .result-box {
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .result-spam {
+            background-color: #ffe5e5;
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        .result-ham {
+            background-color: #e6ffea;
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h1>SMS Spam Classifier</h1>
+</nav>
+
+<!-- Hero Header -->
+<section class="header text-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4">Protecting Your Messages</h1>
+                <p class="lead">Using Machine Learning to Detect Spam with Accuracy</p>
+                <a href="https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset" class="btn btn-light btn-lg">Learn More</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://i.ytimg.com/vi/A2X65q2fkBo/hq720.jpg" alt="Spam Filter" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prediction Form -->
+<section class="form text-center py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2 class="display-5">Let's Predict</h2>
+                <form method="POST" action="/predict">
+                    <div class="form-group">
+                        <label for="message">Enter the message:</label>
+                        <textarea id="message" name="message" rows="4" class="form-control" required>{{ message or '' }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" name="action" value="predict">Predict</button>
+                </form>
+
+                <!-- Result Display -->
+                {% if result is defined %}
+                    <div class="mt-4">
+                        <div class="result-box {% if result == 'Spam' %}result-spam{% else %}result-ham{% endif %}">
+                            <strong>Prediction:</strong> {{ result }}<br>
+                            <strong>Message:</strong> {{ message }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="features text-center py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <i class="fas fa-shield-alt fa-4x mb-3"></i>
+                <h3 class="h4">Security</h3>
+                <p class="text-muted">Advanced ML models ensure real-time spam detection.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="fas fa-lock fa-4x mb-3"></i>
+                <h3 class="h4">Privacy</h3>
+                <p class="text-muted">Your inputs are never stored or shared.</p>
+            </div>
+            <div class="col-lg-4">
+                <i class="fas fa-globe fa-4x mb-3"></i>
+                <h3 class="h4">Global Reach</h3>
+                <p class="text-muted">Supports message formats across countries and languages.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer text-center py-3">
+    <div class="container">
+        <p class="text-muted">&copy; 2025 Master_Neuron. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
