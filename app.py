@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import pickle
 import string
+import os  # ✅ Added for Render compatibility
 
 app = Flask(__name__)
 
@@ -42,7 +43,6 @@ def predict_spam(message):
     result = model.predict(vector_input)[0]
     return result
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -58,4 +58,7 @@ def predict():
 if __name__ == '__main__':
     tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
     model = pickle.load(open('model.pkl', 'rb'))
-    app.run(debug=True)
+    
+    # ✅ Fix for Render: host='0.0.0.0', and dynamic port binding
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
