@@ -26,13 +26,16 @@ This project is a **Flask-based machine learning application** that classifies S
 
 ```bash
 SMS_Spam_Classifier/
-├── app.py                  # Flask web application
-├── spam_classifier.ipynb   # Jupyter notebook (EDA + Model building)
-├── vectorizer.pkl          # Saved TF-IDF vectorizer
-├── model.pkl               # Trained Naive Bayes model
+├── app.py
+├── spam_classifier.ipynb
+├── vectorizer.pkl
+├── model.pkl
 ├── templates/
-│   └── index.html          # Web page template (Flask Jinja)
+│   └── index.html
 ├── static/
-│   └── styles.css (opt)    # Optional custom styles
-├── requirements.txt        # Required Python packages
-└── Procfile                # Render deployment config
+│   ├── styles.css
+│   ├── Home_Page.png
+│   ├── Spam.png
+│   └── Not_Spam.png
+├── requirements.txt
+└── Procfile
