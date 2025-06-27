@@ -7,8 +7,7 @@ This project is a **Flask-based machine learning application** that classifies S
 ## 🚀 Demo
 
 🔗 Live Link (after deployment):  
-[https://your-render-url.onrender.com](https://your-render-url.onrender.com)
-
+https://spam-message-classifier-2.onrender.com
 ---
 
 ## 🧠 Features
